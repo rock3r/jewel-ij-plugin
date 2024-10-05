@@ -5,6 +5,12 @@ without the Android plugin enabled.
 
 This is **experimental, untested, and probably broken**. You've been warned!
 
+# Ported features
+These features have been ported from Studio:  
+
+## Debugger
+ * Composition state is displayed in the debugger when debugging a composable function (v0.0.1)
+
 ## License
 
 All code in this plugin is Copyright by the Android Open Source Project, licensed under the Apache 2.0 license.
