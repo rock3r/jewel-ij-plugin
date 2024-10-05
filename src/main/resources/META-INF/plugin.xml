@@ -18,6 +18,9 @@
         <dependencySupport coordinate="org.jetbrains.compose.foundation:foundation-desktop" kind="java"
                            displayName="Compose for Desktop"/>
 
+        <annotator language="kotlin"
+                   implementationClass="com.android.tools.compose.code.state.ComposeStateReadAnnotator"/>
+
         <debugger.positionManagerFactory
                 implementation="com.android.tools.compose.debug.ComposePositionManagerFactory"/>
         <debugger.kotlinStackFrameValueContributor
@@ -52,10 +55,24 @@
                      description="Add a node to the debugger view of a composable function that describes why the function is being recomposed"
                      defaultValue="true"
                      restartRequired="false"/>
+
+        <registryKey key="jewel.compose.state.read.inlay.hints.enabled"
+                     description="Enable inlay hints for State reads in @Composable functions. If enabled, calls out reads of variables of type State inside @Composable functions."
+                     defaultValue="true"
+                     restartRequired="false"/>
+
+        <codeInsight.declarativeInlayProvider language="kotlin"
+                                              implementationClass="com.android.tools.compose.code.state.ComposeStateReadInlayHintsProvider"
+                                              isEnabledByDefault="false"
+                                              group="OTHER_GROUP"
+                                              providerId="compose.state.read"
+                                              bundle="messages.ComposeBundle"
+                                              nameKey="state.read.inlay.provider.name"
+                                              descriptionKey="state.read.inlay.provider.description"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
-        <supportsKotlinPluginMode supportsK2="true" />
+        <supportsKotlinPluginMode supportsK2="true"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin.extensions.internal">

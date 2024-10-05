@@ -6,10 +6,15 @@ without the Android plugin enabled.
 This is **experimental, untested, and probably broken**. You've been warned!
 
 # Ported features
-These features have been ported from Studio:  
+
+These features have been ported from Studio:
 
 ## Debugger
- * Composition state is displayed in the debugger when debugging a composable function (v0.0.1)
+
+* Composition state is displayed in the debugger when debugging a composable function (v0.0.1)
+* State read inlay hints (v0.0.1)
+    * This is off by default, you can enable it by alt-enter over a State read and selecting "Enable inlay hints for
+      State reads"
 
 ## License
 
