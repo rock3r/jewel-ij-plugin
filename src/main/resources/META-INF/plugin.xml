@@ -147,6 +147,8 @@
         <codeInsight.lineMarkerProvider language="kotlin"
                                         implementationClass="com.android.tools.compose.ComposeColorLineMarkerProviderDescriptor"/>
 
+        <usageGroupingRuleProvider implementation="com.android.tools.compose.ComposeUsageGroupingRuleProvider" />
+
         <codeInsight.declarativeInlayProvider language="kotlin"
                                               implementationClass="com.android.tools.compose.code.state.ComposeStateReadInlayHintsProvider"
                                               isEnabledByDefault="false"
