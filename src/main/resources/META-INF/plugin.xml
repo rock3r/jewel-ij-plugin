@@ -30,6 +30,26 @@
 
         <colorSettingsPage implementation="com.android.tools.compose.ComposeColorSettingsPage"/>
 
+        <intentionAction>
+            <language>kotlin</language>
+            <className>com.android.tools.compose.intentions.ComposeSurroundWithWidgetActionGroup</className>
+            <category>Jewel for Compose</category>
+        </intentionAction>
+
+        <intentionAction>
+            <language>kotlin</language>
+            <className>com.android.tools.compose.intentions.ComposeWrapModifiersAction</className>
+            <category>Jewel for Compose</category>
+        </intentionAction>
+
+        <intentionAction>
+            <language>kotlin</language>
+            <className>com.android.tools.compose.intentions.ComposeUnwrapAction</className>
+            <category>Jewel for Compose</category>
+        </intentionAction>
+
+        <codeStyleSettingsProvider implementation="com.android.tools.compose.settings.ComposeFormattingCodeStyleSettingsProvider"/>
+
         <debugger.positionManagerFactory
                 implementation="com.android.tools.compose.debug.ComposePositionManagerFactory"/>
         <debugger.kotlinStackFrameValueContributor

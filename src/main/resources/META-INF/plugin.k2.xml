@@ -18,8 +18,10 @@
   <extensions defaultExtensionNs="org.jetbrains.kotlin">
     <callHighlighterExtension implementation="com.android.tools.compose.aa.ComposableCallHighlighterExtension"/>
 
-    <!-- Note: this is supposed to be used for K1 mode only, but we don't get conditional includes in Gradle -->
+    <!-- Note: these are supposed to be used for K1 mode only, but we don't get conditional includes in Gradle -->
     <highlighterExtension implementation="com.android.tools.compose.ComposableHighlightingVisitorExtension"/>
+    <quickFixContributor implementation="com.android.tools.compose.intentions.ComposeUnresolvedFunctionFixContributor"/>
+    <quickFixContributor implementation="com.android.tools.compose.intentions.AddComposableAnnotationQuickFix$Contributor"/>
     
 <!--    <codeinsight.quickfix.registrar implementation="com.android.tools.compose.aa.intentions.ComposeIdePluginQuickFixRegistrar"/>-->
 <!--    <extractFunctionDescriptorModifier implementation="com.android.tools.compose.aa.ComposableFunctionExtractableAnalyser"/>-->
@@ -29,10 +31,18 @@
   </extensions>
 
   <extensions defaultExtensionNs="com.intellij">
-<!--    <intentionAction>-->
-<!--      <language>kotlin</language>-->
-<!--      <className>com.android.tools.compose.intentions.ComposeCreatePreviewActionK2</className>-->
-<!--      <category>Compose Android</category>-->
-<!--    </intentionAction>-->
+    <intentionAction>
+      <language>kotlin</language>
+      <className>com.android.tools.compose.intentions.ComposeCreatePreviewActionK1</className>
+      <!--suppress PluginXmlCapitalization -->
+      <category>Compose Android</category>
+    </intentionAction>
+
+    <intentionAction>
+      <language>kotlin</language>
+      <className>com.android.tools.compose.intentions.ComposeCreatePreviewActionK2</className>
+      <!--suppress PluginXmlCapitalization -->
+      <category>Compose Android</category>
+    </intentionAction>
   </extensions>
 </idea-plugin>
