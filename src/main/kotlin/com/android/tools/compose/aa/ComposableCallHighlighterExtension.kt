@@ -17,6 +17,8 @@ package com.android.tools.compose.aa
 
 import com.android.tools.compose.COMPOSABLE_CALL_TEXT_TYPE
 import com.android.tools.compose.isComposableInvocation
+import com.android.tools.compose.isComposeEnabled
+import com.android.tools.compose.isInLibrarySource
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType
 import com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.analysis.api.KaSession
@@ -37,6 +39,8 @@ class ComposableCallHighlighterExtension : KotlinCallHighlighterExtension {
     // For composable invocations, highlight if either:
     // 1. compose is enabled for the current module, or
     // 2. the file is part of a library's source code.
-    return COMPOSABLE_CALL_TEXT_TYPE  // -- TODO check removed here
+    return if (isComposeEnabled(elementToHighlight) || isInLibrarySource(elementToHighlight))
+      COMPOSABLE_CALL_TEXT_TYPE
+    else null
   }
 }

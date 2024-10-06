@@ -56,6 +56,8 @@ class ComposableHighlightingVisitorExtension : KotlinHighlightingVisitorExtensio
         // For composable invocations, highlight if either:
         // 1. compose is enabled for the current module, or
         // 2. the file is part of a library's source code.
-        return COMPOSABLE_CALL_TEXT_TYPE // -- TODO check removed here
+        return if (isComposeEnabled(elementToHighlight) || isInLibrarySource(elementToHighlight))
+            COMPOSABLE_CALL_TEXT_TYPE
+        else null
     }
 }

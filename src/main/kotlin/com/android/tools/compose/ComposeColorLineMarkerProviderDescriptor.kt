@@ -31,6 +31,10 @@ import com.intellij.ui.colorpicker.ColorPickerBuilder
 import com.intellij.ui.colorpicker.MaterialGraphicalColorPipetteProvider
 import com.intellij.ui.picker.ColorListener
 import com.intellij.util.ui.ColorIcon
+import java.awt.Color
+import java.awt.MouseInfo
+import java.awt.event.MouseEvent
+import java.util.*
 import org.jetbrains.annotations.VisibleForTesting
 import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.idea.base.plugin.KotlinPluginModeProvider
@@ -44,10 +48,6 @@ import org.jetbrains.uast.UCallExpression
 import org.jetbrains.uast.UExpression
 import org.jetbrains.uast.UastCallKind
 import org.jetbrains.uast.toUElement
-import java.awt.Color
-import java.awt.MouseInfo
-import java.awt.event.MouseEvent
-import java.util.*
 
 private const val ICON_SIZE = 8
 
@@ -55,8 +55,7 @@ class ComposeColorLineMarkerProviderDescriptor : LineMarkerProviderDescriptor() 
   override fun getName() = ComposeBundle.message("compose.color.picker.name")
 
   override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-    // -- TODO restore this check
-    if (element.elementType != KtTokens.IDENTIFIER /*|| !isComposeEnabled(element)*/) return null
+    if (element.elementType != KtTokens.IDENTIFIER || !isComposeEnabled(element)) return null
 
     val uElement =
       (element.parent.parent as? KtCallExpression)?.toUElement(UCallExpression::class.java)
@@ -139,7 +138,8 @@ data class ColorIconRenderer(val element: UCallExpression, val color: Color) :
         .addColorValuePanel()
         .withFocus()
         .addSeparator()
-        // .addCustomComponent(MaterialColorPaletteProvider) -- removed because not necessary and hard to port
+        // .addCustomComponent(MaterialColorPaletteProvider) -- removed because not necessary and
+        // hard to port
         .addColorListener(pickerListener)
         .focusWhenDisplay(true)
         .setFocusCycleRoot(true)

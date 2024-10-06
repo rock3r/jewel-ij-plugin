@@ -19,6 +19,7 @@ import JewelIcons
 import androidx.compose.compiler.plugins.kotlin.k1.isComposableInvocation
 import com.android.tools.compose.ComposeBundle
 import com.android.tools.compose.isComposableInvocation
+import com.android.tools.compose.isComposeEnabled
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.LineMarkerProviderDescriptor
 import com.intellij.openapi.editor.markup.GutterIconRenderer
@@ -55,8 +56,8 @@ class ComposeLineMarkerProviderDescriptor : LineMarkerProviderDescriptor() {
   override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
     if (
       element !is LeafPsiElement ||
-        element.elementType != KtTokens.IDENTIFIER // ||
-        // !isComposeEnabled(element)   -- TODO restore this check
+        element.elementType != KtTokens.IDENTIFIER ||
+        !isComposeEnabled(element)
     )
       return null
 

@@ -12,6 +12,7 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
     <depends>org.jetbrains.kotlin</depends>
+    <depends optional="true" config-file="plugin.android.xml">org.jetbrains.android</depends>
 
     <incompatible-with>org.jetbrains.compose.desktop.ide</incompatible-with>
 
@@ -65,7 +66,7 @@
                 order="first"
         />
 
-        <iconProvider implementation="com.android.tools.compose.ComposableIconProvider" order="first" />
+        <iconProvider implementation="com.android.tools.compose.ComposableIconProvider" order="first"/>
 
         <registryKey key="jewel.compose.debugger.recomposition.node"
                      description="Add a node to the debugger view of a composable function that describes why the function is being recomposed"
@@ -78,9 +79,9 @@
                      restartRequired="false"/>
 
         <codeInsight.lineMarkerProvider language="kotlin"
-                                        implementationClass="com.android.tools.compose.code.ComposeLineMarkerProviderDescriptor" />
+                                        implementationClass="com.android.tools.compose.code.ComposeLineMarkerProviderDescriptor"/>
         <codeInsight.lineMarkerProvider language="kotlin"
-                                        implementationClass="com.android.tools.compose.ComposeColorLineMarkerProviderDescriptor" />
+                                        implementationClass="com.android.tools.compose.ComposeColorLineMarkerProviderDescriptor"/>
 
         <codeInsight.declarativeInlayProvider language="kotlin"
                                               implementationClass="com.android.tools.compose.code.state.ComposeStateReadInlayHintsProvider"
@@ -90,8 +91,9 @@
                                               bundle="messages.ComposeBundle"
                                               nameKey="state.read.inlay.provider.name"
                                               descriptionKey="state.read.inlay.provider.description"/>
-        <codeInsight.inlayActionHandler implementationClass="com.android.tools.compose.code.state.ComposeStateReadInlayActionHandler"
-                                        handlerId="compose.state.read" />
+        <codeInsight.inlayActionHandler
+                implementationClass="com.android.tools.compose.code.state.ComposeStateReadInlayActionHandler"
+                handlerId="compose.state.read"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
@@ -104,5 +106,15 @@
     </extensions>
 
     <!-- Note: we don't get conditional includes in Gradle-built plugins, so we're folding everything in here -->
-    <xi:include href="plugin.k2.xml" />
+    <xi:include href="plugin.k2.xml"/>
+
+    <extensionPoints>
+        <extensionPoint dynamic="true"
+                        qualifiedName="org.jetbrains.jewel.projectInfoProvider"
+                        interface="org.jetbrains.jewel.ijplugin.ProjectInfoProvider"/>
+    </extensionPoints>
+
+    <extensions defaultExtensionNs="org.jetbrains.jewel">
+        <projectInfoProvider implementation="org.jetbrains.jewel.ijplugin.NonAndroidProjectInfoProvider" order="last"/>
+    </extensions>
 </idea-plugin>
