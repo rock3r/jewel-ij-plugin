@@ -85,3 +85,5 @@ intellijPlatform {
 }
 
 tasks { wrapper { gradleVersion = providers.gradleProperty("gradleVersion").get() } }
+
+apply(from = "sync-files.gradle.kts")
