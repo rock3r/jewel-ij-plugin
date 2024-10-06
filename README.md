@@ -58,13 +58,15 @@ These features have been ported from Studio:
 * Renaming: renames a file if a @Composable function with the same name was renamed
 * Ensure @Composable annotation is retained when extracting interfaces
 * Add usage grouping rule provider for composables and previews
+* Add Compose documentation provider for completion
 
 # License
 
-All code in this plugin is Copyright by the Android Open Source Project, licensed under the Apache 2.0 license.
+All code in this plugin is Copyright by the Android Open Source Project, or by JetBrains, 
+licensed under the Apache 2.0 license.
 
 ```
-Copyright 2024 The Android Open Source Project
+Copyright 2024 The Android Open Source Project and JetBrains
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -162,9 +162,11 @@
                 handlerId="compose.state.read"/>
     </extensions>
 
-    <extensions defaultExtensionNs="org.jetbrains.kotlin">
-        <supportsKotlinPluginMode supportsK2="true"/>
-    </extensions>
+    <projectListeners>
+        <listener class="com.android.tools.compose.ComposeAutoDocumentation$MyLookupManagerListener"
+                  topic="com.intellij.codeInsight.lookup.LookupManagerListener"
+                  activeInHeadlessMode="false"/>
+    </projectListeners>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin.extensions.internal">
         <typeResolutionInterceptorExtension
@@ -173,6 +175,12 @@
 
     <!-- Note: we don't get conditional includes in Gradle-built plugins, so we're folding everything in here -->
     <xi:include href="plugin.k2.xml"/>
+
+    <!-- ========================= JEWEL CUSTOM CODE BELOW =============================== -->
+
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK2="true"/>
+    </extensions>
 
     <extensionPoints>
         <extensionPoint dynamic="true"
