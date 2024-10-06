@@ -48,6 +48,8 @@
             <category>Jewel for Compose</category>
         </intentionAction>
 
+        <lang.foldingBuilder language="kotlin" implementationClass="com.android.tools.compose.ComposeFoldingBuilder"/>
+
         <codeStyleSettingsProvider implementation="com.android.tools.compose.settings.ComposeFormattingCodeStyleSettingsProvider"/>
 
         <debugger.positionManagerFactory
