@@ -53,6 +53,7 @@
         <defaultLiveTemplates file="templates/JewelCompose.xml"/>
         <defaultLiveTemplates file="templates/JewelComposePreview.xml"/>
 
+        <codeCompletionConfigurable instance="com.android.tools.compose.ComposeCodeCompletionConfigurable"/>
         <codeStyleSettingsProvider implementation="com.android.tools.compose.settings.ComposeFormattingCodeStyleSettingsProvider"/>
 
         <debugger.positionManagerFactory

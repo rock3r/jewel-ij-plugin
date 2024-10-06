@@ -39,6 +39,8 @@ These features have been ported from Studio:
   * Create composable function
   * Add missing composable annotation
 * Live templates: Compose, Compose Preview 
+* Code completion settings
+  * Insert required trailing lambdas for composables 
 
 ## License
 
