@@ -17,32 +17,15 @@
 <idea-plugin>
   <extensions defaultExtensionNs="org.jetbrains.kotlin">
     <callHighlighterExtension implementation="com.android.tools.compose.aa.ComposableCallHighlighterExtension"/>
-
-    <!-- Note: these are supposed to be used for K1 mode only, but we don't get conditional includes in Gradle -->
-    <highlighterExtension implementation="com.android.tools.compose.ComposableHighlightingVisitorExtension"/>
-    <quickFixContributor implementation="com.android.tools.compose.intentions.ComposeUnresolvedFunctionFixContributor"/>
-    <quickFixContributor implementation="com.android.tools.compose.intentions.AddComposableAnnotationQuickFix$Contributor"/>
-    
-<!--    <codeinsight.quickfix.registrar implementation="com.android.tools.compose.aa.intentions.ComposeIdePluginQuickFixRegistrar"/>-->
-<!--    <extractFunctionDescriptorModifier implementation="com.android.tools.compose.aa.ComposableFunctionExtractableAnalyser"/>-->
-    <!-- This is temporary mechanism to mark certain plugins as K2-compatible. See IntelliJ commit cf213fb139 for details. -->
-    <!--suppress PluginXmlValidity -->
-<!--    <supportsKotlinPluginMode supportsK2="true"/>-->
+    <codeinsight.quickfix.registrar implementation="com.android.tools.compose.aa.intentions.ComposeIdePluginQuickFixRegistrar"/>
+    <extractFunctionDescriptorModifier implementation="com.android.tools.compose.aa.ComposableFunctionExtractableAnalyser"/>
   </extensions>
 
   <extensions defaultExtensionNs="com.intellij">
     <intentionAction>
       <language>kotlin</language>
-      <className>com.android.tools.compose.intentions.ComposeCreatePreviewActionK1</className>
-      <!--suppress PluginXmlCapitalization -->
-      <category>Compose Android</category>
-    </intentionAction>
-
-    <intentionAction>
-      <language>kotlin</language>
       <className>com.android.tools.compose.intentions.ComposeCreatePreviewActionK2</className>
-      <!--suppress PluginXmlCapitalization -->
-      <category>Compose Android</category>
+      <category>Jewel for Compose</category>
     </intentionAction>
   </extensions>
 </idea-plugin>
