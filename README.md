@@ -38,6 +38,7 @@ These features have been ported from Studio:
   * Create preview
   * Create composable function
   * Add missing composable annotation
+* Live templates: Compose, Compose Preview 
 
 ## License
 

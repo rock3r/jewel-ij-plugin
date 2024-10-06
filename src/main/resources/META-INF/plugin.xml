@@ -50,6 +50,9 @@
 
         <lang.foldingBuilder language="kotlin" implementationClass="com.android.tools.compose.ComposeFoldingBuilder"/>
 
+        <defaultLiveTemplates file="templates/JewelCompose.xml"/>
+        <defaultLiveTemplates file="templates/JewelComposePreview.xml"/>
+
         <codeStyleSettingsProvider implementation="com.android.tools.compose.settings.ComposeFormattingCodeStyleSettingsProvider"/>
 
         <debugger.positionManagerFactory
