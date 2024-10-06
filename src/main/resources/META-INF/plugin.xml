@@ -139,6 +139,9 @@
                      defaultValue="true"
                      restartRequired="false"/>
 
+        <overrideImplementsAnnotationsFilter id="ComposeOverrideImplementsAnnotationsFilter"
+                                             implementation="com.android.tools.compose.ComposeOverrideImplementsAnnotationsFilter"/>
+
         <codeInsight.lineMarkerProvider language="kotlin"
                                         implementationClass="com.android.tools.compose.code.ComposeLineMarkerProviderDescriptor"/>
         <codeInsight.lineMarkerProvider language="kotlin"
