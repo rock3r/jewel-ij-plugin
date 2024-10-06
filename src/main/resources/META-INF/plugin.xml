@@ -173,7 +173,8 @@
                 implementation="androidx.compose.compiler.plugins.kotlin.k1.ComposeTypeResolutionInterceptorExtension"/>
     </extensions>
 
-    <!-- Note: we don't get conditional includes in Gradle-built plugins, so we're folding everything in here -->
+    <!-- Note: we don't get conditional includes in Gradle-built plugins, so we're leaving everything in here -->
+    <xi:include href="plugin.k1.xml"/>
     <xi:include href="plugin.k2.xml"/>
 
     <!-- ========================= JEWEL CUSTOM CODE BELOW =============================== -->

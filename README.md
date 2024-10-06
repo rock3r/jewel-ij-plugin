@@ -56,7 +56,7 @@ These features have been ported from Studio:
 * Suppress inspection that flags composable functions with names starting with capital letters
 * Formatting: split Modifier chains to multiple lines (with setting to toggle, default on)
 * Renaming: renames a file if a @Composable function with the same name was renamed
-* Ensure @Composable annotation is retained when extracting interfaces
+* Ensure @Composable annotation is retained when extracting interfaces and functions
 * Add usage grouping rule provider for composables and previews
 * Add Compose documentation provider for completion
 
