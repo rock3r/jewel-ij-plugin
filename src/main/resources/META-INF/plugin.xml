@@ -85,6 +85,8 @@
                  id="composeProximityWeigher"
                  order="before javaInheritance" />
 
+        <lang.inspectionSuppressor language="kotlin" implementationClass="com.android.tools.compose.ComposeSuppressor"/>
+
         <debugger.positionManagerFactory
                 implementation="com.android.tools.compose.debug.ComposePositionManagerFactory"/>
         <debugger.kotlinStackFrameValueContributor

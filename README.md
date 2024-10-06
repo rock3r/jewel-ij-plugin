@@ -48,6 +48,7 @@ These features have been ported from Studio:
     * Improve suggestions for Alignment and Arrangement 
   * Setting: insert required trailing lambdas for composables
   * Note: ConstraintLayout completion tweaks have been omitted as it is only available on Android
+* Suppress inspection that flags composable functions with names starting with capital letters
 
 ## License
 
