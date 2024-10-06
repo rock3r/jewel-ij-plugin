@@ -5,6 +5,8 @@ without the Android plugin enabled.
 
 This is **experimental, untested, and probably broken**. You've been warned!
 
+This plugin will only be active on non-Android modules, or when the IntelliJ Android plugin is disabled.
+
 # Ported features
 
 These features have been ported from Studio:
@@ -27,6 +29,15 @@ These features have been ported from Studio:
     * Slight difference from Studio: we don't append the Material colours (they're pretty meaningless in 2024 anyway) 
 * Tweaks to how Composable functions are presented across the IDE features (e.g., in Add Imports)
     * Add @Composable, ellipsize optional parameters 
+* Compose-aware folding tweaks
+* Compose Kotlin code style tab
+* Compose intentions and quick-fixes
+  * Surround with widget
+  * Unwrap composable
+  * Wrap modifiers
+  * Create preview
+  * Create composable function
+  * Add missing composable annotation
 
 ## License
 
