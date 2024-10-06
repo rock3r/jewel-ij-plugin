@@ -87,6 +87,8 @@
 
         <lang.inspectionSuppressor language="kotlin" implementationClass="com.android.tools.compose.ComposeSuppressor"/>
 
+        <postFormatProcessor implementation="com.android.tools.compose.formatting.ComposePostFormatProcessor"/>
+
         <debugger.positionManagerFactory
                 implementation="com.android.tools.compose.debug.ComposePositionManagerFactory"/>
         <debugger.kotlinStackFrameValueContributor

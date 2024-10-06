@@ -49,6 +49,7 @@ These features have been ported from Studio:
   * Setting: insert required trailing lambdas for composables
   * Note: ConstraintLayout completion tweaks have been omitted as it is only available on Android
 * Suppress inspection that flags composable functions with names starting with capital letters
+* Formatting: split Modifier chains to multiple lines (with setting to toggle, default on)
 
 ## License
 
