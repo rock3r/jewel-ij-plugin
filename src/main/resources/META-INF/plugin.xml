@@ -89,6 +89,8 @@
 
         <postFormatProcessor implementation="com.android.tools.compose.formatting.ComposePostFormatProcessor"/>
 
+        <automaticRenamerFactory implementation="com.android.tools.compose.ComposableElementAutomaticRenamerFactory"/>
+
         <debugger.positionManagerFactory
                 implementation="com.android.tools.compose.debug.ComposePositionManagerFactory"/>
         <debugger.kotlinStackFrameValueContributor

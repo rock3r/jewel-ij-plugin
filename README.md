@@ -50,6 +50,7 @@ These features have been ported from Studio:
   * Note: ConstraintLayout completion tweaks have been omitted as it is only available on Android
 * Suppress inspection that flags composable functions with names starting with capital letters
 * Formatting: split Modifier chains to multiple lines (with setting to toggle, default on)
+* Renaming: renames a file if a @Composable function with the same name was renamed
 
 ## License
 
