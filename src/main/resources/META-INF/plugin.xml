@@ -1,9 +1,10 @@
-<idea-plugin>
+<idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
     <id>org.jetbrains.jewel.plugin</id>
     <name>Jewel</name>
-    <vendor>JetBrains</vendor>
+    <vendor url="https://github.com/JetBrains/Jewel">JetBrains</vendor>
     <description><![CDATA[
   Adds support for building Compose for Desktop/Jewel UI on the JVM via the <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> toolkit.
+
 
   <p><a href="https://github.com/JetBrains/jewel">Jewel</a></p>
   <p><a href="https://developer.android.com/studio">Android Studio</a></p>
@@ -11,6 +12,8 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
     <depends>org.jetbrains.kotlin</depends>
+
+    <incompatible-with>org.jetbrains.compose.desktop.ide</incompatible-with>
 
     <resource-bundle>messages.ComposeBundle</resource-bundle>
 
@@ -20,6 +23,11 @@
 
         <annotator language="kotlin"
                    implementationClass="com.android.tools.compose.code.state.ComposeStateReadAnnotator"/>
+
+        <additionalTextAttributes scheme="Default" file="colorschemes/ComposeColorSchemeDefault.xml"/>
+        <additionalTextAttributes scheme="Darcula" file="colorschemes/ComposeColorSchemeDarcula.xml"/>
+
+        <colorSettingsPage implementation="com.android.tools.compose.ComposeColorSettingsPage"/>
 
         <debugger.positionManagerFactory
                 implementation="com.android.tools.compose.debug.ComposePositionManagerFactory"/>
@@ -51,6 +59,14 @@
                                            implementation="com.android.tools.compose.debug.render.KotlinMapEntryRenderer"
                                            order="first"/>
 
+        <itemPresentationProvider
+                forClass="org.jetbrains.kotlin.psi.KtFunction"
+                implementationClass="com.android.tools.compose.ComposableItemPresentationProvider"
+                order="first"
+        />
+
+        <iconProvider implementation="com.android.tools.compose.ComposableIconProvider" order="first" />
+
         <registryKey key="jewel.compose.debugger.recomposition.node"
                      description="Add a node to the debugger view of a composable function that describes why the function is being recomposed"
                      defaultValue="true"
@@ -61,6 +77,11 @@
                      defaultValue="true"
                      restartRequired="false"/>
 
+        <codeInsight.lineMarkerProvider language="kotlin"
+                                        implementationClass="com.android.tools.compose.code.ComposeLineMarkerProviderDescriptor" />
+        <codeInsight.lineMarkerProvider language="kotlin"
+                                        implementationClass="com.android.tools.compose.ComposeColorLineMarkerProviderDescriptor" />
+
         <codeInsight.declarativeInlayProvider language="kotlin"
                                               implementationClass="com.android.tools.compose.code.state.ComposeStateReadInlayHintsProvider"
                                               isEnabledByDefault="false"
@@ -69,6 +90,8 @@
                                               bundle="messages.ComposeBundle"
                                               nameKey="state.read.inlay.provider.name"
                                               descriptionKey="state.read.inlay.provider.description"/>
+        <codeInsight.inlayActionHandler implementationClass="com.android.tools.compose.code.state.ComposeStateReadInlayActionHandler"
+                                        handlerId="compose.state.read" />
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
@@ -79,4 +102,7 @@
         <typeResolutionInterceptorExtension
                 implementation="androidx.compose.compiler.plugins.kotlin.k1.ComposeTypeResolutionInterceptorExtension"/>
     </extensions>
+
+    <!-- Note: we don't get conditional includes in Gradle-built plugins, so we're folding everything in here -->
+    <xi:include href="plugin.k2.xml" />
 </idea-plugin>

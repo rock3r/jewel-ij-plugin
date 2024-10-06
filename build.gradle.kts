@@ -22,6 +22,7 @@ kotlin {
                 )
                 optIn("org.jetbrains.kotlin.analysis.api.permissions.KaAllowAnalysisOnEdt")
                 optIn("org.jetbrains.kotlin.analysis.api.permissions.KaAllowProhibitedAnalyzeFromWriteAction")
+                enableLanguageFeature("ContextReceivers")
             }
         }
     }

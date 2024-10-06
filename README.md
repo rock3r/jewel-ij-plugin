@@ -11,10 +11,22 @@ These features have been ported from Studio:
 
 ## Debugger
 
-* Composition state is displayed in the debugger when debugging a composable function (v0.0.1)
-* State read inlay hints (v0.0.1)
+* Composition state is displayed in the debugger when debugging a composable function
+
+## Editor
+
+* State read inlay hints
     * This is off by default, you can enable it by alt-enter over a State read and selecting "Enable inlay hints for
       State reads"
+* Composable function invocation colour highlighting
+    * You can customise these colours in _Settings | Editor | Color Scheme | Compose_
+* Composable function invocation: icon in gutter
+    * This is off by default, you can enable it by going to _Settings | Editor | General | Gutter Icons_ and turning on
+      the "@Composable function call" item in the Jewel section
+* Compose Color preview in gutter; can be clicked to open a colour picker
+    * Slight difference from Studio: we don't append the Material colours (they're pretty meaningless in 2024 anyway) 
+* Tweaks to how Composable functions are presented across the IDE features (e.g., in Add Imports)
+    * Add @Composable, ellipsize optional parameters 
 
 ## License
 
