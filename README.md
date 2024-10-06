@@ -14,6 +14,11 @@ These features have been ported from Studio:
 ## Debugger
 
 * Composition state is displayed in the debugger when debugging a composable function
+* Enable setting breakpoints inside composable singleton lambdas
+* Allow skipping over Compose runtime inner classes (with setting to toggle, default enabled)
+* Add Composable function breakpoint type
+* Improve rendering of Compose state objects in debugger's variables view
+* Improve rendering of MapEntry values
 
 ## Editor
 
@@ -52,7 +57,7 @@ These features have been ported from Studio:
 * Formatting: split Modifier chains to multiple lines (with setting to toggle, default on)
 * Renaming: renames a file if a @Composable function with the same name was renamed
 
-## License
+# License
 
 All code in this plugin is Copyright by the Android Open Source Project, licensed under the Apache 2.0 license.
 
