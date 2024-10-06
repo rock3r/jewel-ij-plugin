@@ -1,11 +1,19 @@
 # Jewel IntelliJ Plugin
 
+<!-- Plugin description -->
 Experimental copy of Compose tooling from Android Studio's `compose-ide-plugin` that works in IntelliJ IDEA, even
 without the Android plugin enabled.
 
 This is **experimental, untested, and probably broken**. You've been warned!
 
+Adds support for building Compose for Desktop/Jewel UI on the JVM via
+the [Jetpack Compose](https://developer.android.com/jetpack/compose) toolkit.
+
+More info on [Jewel](https://github.com/JetBrains/jewel) and [Android Studio](https://developer.android.com/studio) can
+be found on the respective websites.
+
 This plugin will only be active on non-Android modules, or when the IntelliJ Android plugin is disabled.
+<!-- Plugin description end -->
 
 # Ported features
 
@@ -31,28 +39,28 @@ These features have been ported from Studio:
     * This is off by default, you can enable it by going to _Settings | Editor | General | Gutter Icons_ and turning on
       the "@Composable function call" item in the Jewel section
 * Compose Color preview in gutter; can be clicked to open a colour picker
-    * Slight difference from Studio: we don't append the Material colours (they're pretty meaningless in 2024 anyway) 
+    * Slight difference from Studio: we don't append the Material colours (they're pretty meaningless in 2024 anyway)
 * Tweaks to how Composable functions are presented across the IDE features (e.g., in Add Imports)
-    * Add @Composable, ellipsize optional parameters 
+    * Add @Composable, ellipsize optional parameters
 * Compose-aware folding tweaks
 * Compose Kotlin code style tab
 * Compose intentions and quick-fixes
-  * Surround with widget
-  * Unwrap composable
-  * Wrap modifiers
-  * Create preview
-  * Create composable function
-  * Add missing composable annotation
-* Live templates: Compose, Compose Preview 
+    * Surround with widget
+    * Unwrap composable
+    * Wrap modifiers
+    * Create preview
+    * Create composable function
+    * Add missing composable annotation
+* Live templates: Compose, Compose Preview
 * Code completion
-  * Improve completion order for Compose code 
-    * Prioritise modifiers, colours, etc
-    * Prioritise composable functions
-    * Improve trailing lambda completion UX
-    * Improve Material Icons preview in completion
-    * Improve suggestions for Alignment and Arrangement 
-  * Setting: insert required trailing lambdas for composables
-  * Note: ConstraintLayout completion tweaks have been omitted as it is only available on Android
+    * Improve completion order for Compose code
+        * Prioritise modifiers, colours, etc
+        * Prioritise composable functions
+        * Improve trailing lambda completion UX
+        * Improve Material Icons preview in completion
+        * Improve suggestions for Alignment and Arrangement
+    * Setting: insert required trailing lambdas for composables
+    * Note: ConstraintLayout completion tweaks have been omitted as it is only available on Android
 * Suppress inspection that flags composable functions with names starting with capital letters
 * Formatting: split Modifier chains to multiple lines (with setting to toggle, default on)
 * Renaming: renames a file if a @Composable function with the same name was renamed
@@ -62,7 +70,7 @@ These features have been ported from Studio:
 
 # License
 
-All code in this plugin is Copyright by the Android Open Source Project, or by JetBrains, 
+All code in this plugin is Copyright by the Android Open Source Project, or by JetBrains,
 licensed under the Apache 2.0 license.
 
 ```
