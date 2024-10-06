@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("KotlincFE10", "UnstableApiUsage", "DEPRECATION")
 
 package com.android.tools.compose
 
@@ -40,13 +41,21 @@ import org.jetbrains.kotlin.analysis.api.symbols.KaPropertySymbol
 import org.jetbrains.kotlin.analysis.api.symbols.KaValueParameterSymbol
 import org.jetbrains.kotlin.analysis.api.symbols.receiverType
 import org.jetbrains.kotlin.analysis.api.types.KaType
+import org.jetbrains.kotlin.descriptors.CallableDescriptor
 import org.jetbrains.kotlin.idea.base.plugin.KotlinPluginModeProvider
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToCall
+import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.search.usagesSearch.descriptor
+import org.jetbrains.kotlin.name.FqName
+import org.jetbrains.kotlin.psi.KtCallableDeclaration
+import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtElement
 import org.jetbrains.kotlin.psi.KtFunction
+import org.jetbrains.kotlin.psi.KtNamedFunction
+import org.jetbrains.kotlin.psi.KtValueArgument
+import org.jetbrains.kotlin.psi.KtValueArgumentList
 import org.jetbrains.kotlin.psi.psiUtil.getChildrenOfType
 import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
 import org.jetbrains.kotlin.util.OperatorNameConventions
@@ -82,7 +91,26 @@ fun isModifierChainLongerThanTwo(element: KtElement): Boolean {
     return false
 }
 
-@Suppress("KotlincFE10", "UnstableApiUsage")
+internal fun KtValueArgument.matchingParamTypeFqName(callee: KtNamedFunction): FqName? {
+    return if (isNamed()) {
+        val argumentName = getArgumentName()!!.asName.asString()
+        val matchingParam = callee.valueParameters.find { it.name == argumentName } ?: return null
+        matchingParam.returnTypeFqName()
+    } else {
+        val argumentIndex = (parent as KtValueArgumentList).arguments.indexOf(this)
+        val paramAtIndex = callee.valueParameters.getOrNull(argumentIndex) ?: return null
+        paramAtIndex.returnTypeFqName()
+    }
+}
+
+internal fun KtDeclaration.returnTypeFqName(): FqName? =
+    if (KotlinPluginModeProvider.isK2Mode()) {
+        if (this !is KtCallableDeclaration) null
+        else analyze(this) { asFqName(this@returnTypeFqName.returnType) }
+    } else {
+        (resolveToDescriptorIfAny() as? CallableDescriptor)?.returnType?.fqName
+    }
+
 @OptIn(KaAllowAnalysisOnEdt::class)
 internal fun KtElement.callReturnTypeFqName() =
     if (KotlinPluginModeProvider.isK2Mode()) {
@@ -102,7 +130,6 @@ internal fun KtElement.callReturnTypeFqName() =
 // and `KtTypeRenderer`.
 internal fun KaSession.asFqName(type: KaType) = type.expandedSymbol?.classId?.asSingleFqName()
 
-@Suppress("KotlincFE10")
 internal fun KtFunction.hasComposableAnnotation() =
     if (KotlinPluginModeProvider.isK2Mode()) {
         hasAnnotation(ComposeClassIds.Composable)

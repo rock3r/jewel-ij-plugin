@@ -39,8 +39,15 @@ These features have been ported from Studio:
   * Create composable function
   * Add missing composable annotation
 * Live templates: Compose, Compose Preview 
-* Code completion settings
-  * Insert required trailing lambdas for composables 
+* Code completion
+  * Improve completion order for Compose code 
+    * Prioritise modifiers, colours, etc
+    * Prioritise composable functions
+    * Improve trailing lambda completion UX
+    * Improve Material Icons preview in completion
+    * Improve suggestions for Alignment and Arrangement 
+  * Setting: insert required trailing lambdas for composables
+  * Note: ConstraintLayout completion tweaks have been omitted as it is only available on Android
 
 ## License
 

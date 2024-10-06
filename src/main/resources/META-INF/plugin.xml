@@ -56,6 +56,35 @@
         <codeCompletionConfigurable instance="com.android.tools.compose.ComposeCodeCompletionConfigurable"/>
         <codeStyleSettingsProvider implementation="com.android.tools.compose.settings.ComposeFormattingCodeStyleSettingsProvider"/>
 
+        <completion.contributor language="kotlin"
+                                id="ComposeCompletionContributor"
+                                implementationClass="com.android.tools.compose.code.completion.ComposeCompletionContributor"
+                                order="first, before KotlinCompletionContributor, before kind_executor"/>
+
+        <completion.contributor language="kotlin"
+                                id="ComposeAlignmentCompletionContributor"
+                                implementationClass="com.android.tools.compose.code.completion.ComposePositioningCompletionContributor"
+                                order="first, before KotlinCompletionContributor"/>
+
+        <completion.contributor language="kotlin"
+                                implementationClass="com.android.tools.compose.code.completion.ComposeModifierCompletionContributor"
+                                order="first, before ComposeCompletionContributor"/>
+
+        <weigher key="completion"
+                 implementationClass="com.android.tools.compose.code.completion.ComposeCompletionWeigher"
+                 id="android.compose"
+                 order="first"/>
+
+        <weigher key="completion"
+                 implementationClass="com.android.tools.compose.code.completion.ComposePositioningCompletionWeigher"
+                 id="ComposePositioningCompletionWeigher"
+                 order="first"/>
+
+        <weigher key="proximity"
+                 implementationClass="com.android.tools.compose.code.actions.ComposeProximityWeigher"
+                 id="composeProximityWeigher"
+                 order="before javaInheritance" />
+
         <debugger.positionManagerFactory
                 implementation="com.android.tools.compose.debug.ComposePositionManagerFactory"/>
         <debugger.kotlinStackFrameValueContributor
