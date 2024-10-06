@@ -16,7 +16,7 @@
 
 package com.android.tools.compose
 
-import JewelIcons
+import icons.StudioIcons
 import com.android.tools.compose.code.state.COMPOSE_STATE_READ_SCOPE_HIGHLIGHTING_TEXT_ATTRIBUTES_KEY
 import com.android.tools.compose.code.state.COMPOSE_STATE_READ_TEXT_ATTRIBUTES_KEY
 import com.android.tools.idea.flags.StudioFlags
@@ -82,7 +82,7 @@ class ComposeColorSettingsPage : ColorSettingsPage {
 
     override fun getAdditionalHighlightingTagToDescriptorMap() = TAG_TO_DESCRIPTOR
 
-    override fun getIcon() = JewelIcons.ComposableFunction
+    override fun getIcon() = StudioIcons.Compose.Editor.COMPOSABLE_FUNCTION
 
     override fun getAttributeDescriptors() =
         buildList {

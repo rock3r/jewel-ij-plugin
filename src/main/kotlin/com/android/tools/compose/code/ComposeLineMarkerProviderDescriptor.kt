@@ -15,7 +15,7 @@
  */
 package com.android.tools.compose.code
 
-import JewelIcons
+import icons.StudioIcons
 import androidx.compose.compiler.plugins.kotlin.k1.isComposableInvocation
 import com.android.tools.compose.ComposeBundle
 import com.android.tools.compose.isComposableInvocation
@@ -51,7 +51,7 @@ class ComposeLineMarkerProviderDescriptor : LineMarkerProviderDescriptor() {
 
   override fun getId() = "ComposeLineMarkerProviderDescriptor"
 
-  override fun getIcon() = JewelIcons.ComposableFunction
+  override fun getIcon() = StudioIcons.GutterIcons.COMPOSABLE_FUNCTION
 
   override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
     if (
@@ -67,7 +67,7 @@ class ComposeLineMarkerProviderDescriptor : LineMarkerProviderDescriptor() {
     return LineMarkerInfo<PsiElement>(
       element,
       element.textRange,
-      JewelIcons.ComposableFunction,
+      StudioIcons.GutterIcons.COMPOSABLE_FUNCTION,
       { ComposeBundle.message("composable.line.marker.tooltip") },
       /* navHandler = */ null,
       GutterIconRenderer.Alignment.RIGHT,

@@ -138,8 +138,8 @@ data class ColorIconRenderer(val element: UCallExpression, val color: Color) :
         .addColorValuePanel()
         .withFocus()
         .addSeparator()
-        // .addCustomComponent(MaterialColorPaletteProvider) -- removed because not necessary and
-        // hard to port
+        // -- removed because not necessary and hard to port
+        // .addCustomComponent(MaterialColorPaletteProvider)
         .addColorListener(pickerListener)
         .focusWhenDisplay(true)
         .setFocusCycleRoot(true)

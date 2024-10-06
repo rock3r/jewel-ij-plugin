@@ -17,12 +17,12 @@ package com.android.tools.compose.debug.recomposition
 
 import com.android.tools.compose.ComposeBundle
 import com.intellij.debugger.engine.evaluation.EvaluationContextImpl
-import com.intellij.icons.AllIcons
 import com.intellij.xdebugger.frame.XCompositeNode
 import com.intellij.xdebugger.frame.XNamedValue
 import com.intellij.xdebugger.frame.XValueChildrenList
 import com.intellij.xdebugger.frame.XValueNode
 import com.intellij.xdebugger.frame.XValuePlace
+import icons.StudioIcons
 import kotlin.collections.Map.Entry
 
 /**
@@ -61,7 +61,12 @@ internal class ComposeStateNode(
         else -> append(getStateSummary())
       }
     }
-    node.setPresentation(JewelIcons.ComposableFunction, null, text, childNodes.isNotEmpty())
+    node.setPresentation(
+      /* icon = */ StudioIcons.Compose.Editor.COMPOSABLE_FUNCTION,
+      /* type = */ null,
+      /* value = */ text,
+      /* hasChildren = */ childNodes.isNotEmpty(),
+    )
   }
 
   override fun computeChildren(node: XCompositeNode) {

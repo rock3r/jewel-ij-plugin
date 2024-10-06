@@ -18,12 +18,13 @@ package com.android.tools.compose
 import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiElement
 import com.intellij.ui.RowIcon
-import javax.swing.Icon
+import icons.StudioIcons.Compose.Editor.COMPOSABLE_FUNCTION
 import org.jetbrains.kotlin.idea.KotlinIconProvider
 import org.jetbrains.kotlin.idea.util.hasMatchingExpected
 import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.psiUtil.hasActualModifier
+import javax.swing.Icon
 
 /**
  * Returns Composable function icon for [KtFunction] elements that are composable, or null otherwise
@@ -35,10 +36,10 @@ class ComposableIconProvider : KotlinIconProvider() {
   override fun getIcon(psiElement: PsiElement, flags: Int): Icon? {
     if (psiElement is KtFunction && psiElement.hasComposableAnnotation()) {
       if (flags and Iconable.ICON_FLAG_VISIBILITY > 0) {
-        return createRowIcon(JewelIcons.ComposableFunction, getVisibilityIcon(psiElement.modifierList))
+        return createRowIcon(COMPOSABLE_FUNCTION, getVisibilityIcon(psiElement.modifierList))
       }
 
-      return JewelIcons.ComposableFunction
+      return COMPOSABLE_FUNCTION
     }
 
     return null
