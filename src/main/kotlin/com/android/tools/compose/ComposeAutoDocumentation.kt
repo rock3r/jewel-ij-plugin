@@ -17,7 +17,6 @@
 
 package com.android.tools.compose
 
-import com.android.tools.idea.projectsystem.getModuleSystem
 import com.google.common.annotations.VisibleForTesting
 import com.intellij.codeInsight.CodeInsightSettings
 import com.intellij.codeInsight.completion.CompletionService
@@ -29,6 +28,7 @@ import com.intellij.codeInsight.lookup.LookupManager
 import com.intellij.codeInsight.lookup.LookupManagerListener
 import com.intellij.codeInsight.lookup.impl.LookupImpl
 import com.intellij.openapi.application.EDT
+import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.fileEditor.FileDocumentManager
@@ -42,6 +42,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jetbrains.kotlin.idea.core.completion.DeclarationLookupObject
+import org.jetbrains.kotlin.idea.core.util.toPsiFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.containingClass
 
@@ -101,7 +102,9 @@ class ComposeAutoDocumentation(
             ModuleUtilCore.findModuleForFile(file, newLookup.project)
           }
 
-        if (module?.getModuleSystem()?.usesCompose == true) listener.activate()
+        // -- Check changed to not depend on Android plugin
+        val psiFile = runReadAction { file.toPsiFile (project) }
+        if (psiFile != null && isComposeEnabled(psiFile)) listener.activate()
         else newLookup.removeLookupListener(listener)
       }
     }

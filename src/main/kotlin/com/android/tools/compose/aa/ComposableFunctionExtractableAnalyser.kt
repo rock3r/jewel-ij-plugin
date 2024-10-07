@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("UnstableApiUsage")
+
 package com.android.tools.compose.aa
 
 import androidx.compose.compiler.plugins.kotlin.ComposeClassIds
+import com.android.tools.compose.isComposeEnabled
 import com.android.tools.idea.kotlin.findAnnotation
-import com.android.tools.idea.projectsystem.getModuleSystem
 import com.intellij.psi.util.parentOfType
 import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.analysis.api.resolution.singleFunctionCallOrNull
@@ -51,7 +53,8 @@ class ComposableFunctionExtractableAnalyser : ExtractFunctionDescriptorModifier 
   }
 
   override fun modifyDescriptor(descriptor: ExtractableCodeDescriptor): ExtractableCodeDescriptor {
-    if (descriptor.extractionData.commonParent.getModuleSystem()?.usesCompose != true) {
+    // -- Check changed to not depend on Android plugin
+    if (!isComposeEnabled(descriptor.extractionData.commonParent)) {
       return descriptor
     }
 

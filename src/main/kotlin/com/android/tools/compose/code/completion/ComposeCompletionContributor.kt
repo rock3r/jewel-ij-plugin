@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:SuppressLint("KotlincFE10")
 package com.android.tools.compose.code.completion
 
+import android.annotation.SuppressLint
 import com.android.ide.common.vectordrawable.VdPreview
 import com.android.tools.compose.ComposeSettings
 import com.android.tools.compose.aa.code.getComposableFunctionRenderParts
 import com.android.tools.compose.code.ComposableFunctionRenderParts
 import com.android.tools.compose.code.getComposableFunctionRenderParts
 import com.android.tools.compose.isComposableFunction
-import com.android.tools.idea.projectsystem.getModuleSystem
+import com.android.tools.compose.isComposeEnabled
 import com.google.common.base.CaseFormat
 import com.intellij.codeInsight.completion.CompletionContributor
 import com.intellij.codeInsight.completion.CompletionParameters
@@ -38,9 +40,6 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.util.parentOfType
 import com.intellij.util.asSafely
 import icons.StudioIcons
-import java.io.BufferedReader
-import javax.swing.Icon
-import javax.swing.ImageIcon
 import org.jetbrains.annotations.VisibleForTesting
 import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.analysis.api.types.KaFunctionType
@@ -62,6 +61,9 @@ import org.jetbrains.kotlin.psi.KtSimpleNameExpression
 import org.jetbrains.kotlin.psi.psiUtil.getNextSiblingIgnoringWhitespace
 import org.jetbrains.kotlin.psi.psiUtil.getPrevSiblingIgnoringWhitespace
 import org.jetbrains.kotlin.types.typeUtil.isUnit
+import java.io.BufferedReader
+import javax.swing.Icon
+import javax.swing.ImageIcon
 
 private val COMPOSABLE_FUNCTION_ICON = StudioIcons.Compose.Editor.COMPOSABLE_FUNCTION
 
@@ -102,7 +104,7 @@ class ComposeCompletionContributor : CompletionContributor() {
     resultSet: CompletionResultSet,
   ) {
     if (
-      parameters.position.getModuleSystem()?.usesCompose != true ||
+      !isComposeEnabled(parameters.position) || // -- Check changed to not depend on Android plugin
         parameters.position.language != KotlinLanguage.INSTANCE
     ) {
       return

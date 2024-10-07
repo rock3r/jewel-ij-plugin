@@ -15,7 +15,6 @@
  */
 package com.android.tools.compose
 
-import com.android.tools.idea.projectsystem.getModuleSystem
 import com.intellij.psi.PsiElement
 import com.intellij.refactoring.rename.naming.AutomaticRenamer
 import com.intellij.refactoring.rename.naming.AutomaticRenamerFactory
@@ -29,7 +28,7 @@ class ComposableElementAutomaticRenamerFactory : AutomaticRenamerFactory {
 
   override fun isApplicable(element: PsiElement): Boolean {
     if (
-      element.getModuleSystem()?.usesCompose != true ||
+      !isComposeEnabled(element) || // -- Check changed to not depend on Android plugin
         element !is KtNamedFunction ||
         element.parent !is KtFile ||
         !element.isComposableFunction()

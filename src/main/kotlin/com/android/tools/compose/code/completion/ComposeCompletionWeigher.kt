@@ -16,7 +16,7 @@
 package com.android.tools.compose.code.completion
 
 import com.android.tools.compose.isComposableFunction
-import com.android.tools.idea.projectsystem.getModuleSystem
+import com.android.tools.compose.isComposeEnabled
 import com.intellij.codeInsight.completion.CompletionLocation
 import com.intellij.codeInsight.completion.CompletionParameters
 import com.intellij.codeInsight.completion.CompletionWeigher
@@ -130,4 +130,5 @@ private fun CompletionParameters.isForValueArgument() =
 
 /** Checks if the given completions parameters are in a Kotlin file in a Compose-enabled module. */
 private fun CompletionParameters.isInComposeEnabledModuleAndFile() =
-  position.language == KotlinLanguage.INSTANCE && position.getModuleSystem()?.usesCompose == true
+  // -- Check changed to not depend on Android plugin
+  position.language == KotlinLanguage.INSTANCE && isComposeEnabled(position)

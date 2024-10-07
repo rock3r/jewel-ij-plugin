@@ -16,8 +16,8 @@
 package com.android.tools.compose.code.actions
 
 import com.android.tools.compose.isComposableFunction
+import com.android.tools.compose.isComposeEnabled
 import com.android.tools.compose.isDeprecated
-import com.android.tools.idea.projectsystem.getModuleSystem
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.ProximityLocation
 import com.intellij.psi.util.proximity.ProximityWeigher
@@ -28,7 +28,7 @@ import org.jetbrains.kotlin.psi.KtNamedDeclaration
 class ComposeProximityWeigher : ProximityWeigher() {
   override fun weigh(element: PsiElement, location: ProximityLocation): Int? {
     if (location.position?.language != KotlinLanguage.INSTANCE) return null
-    if (location.positionModule?.getModuleSystem()?.usesCompose != true) return null
+    if (!isComposeEnabled(element)) return null // -- Check changed to not depend on Android plugin
 
     // In the "Add Import" case, `location` unfortunately points only to the file we're in -- so we
     // can't do anything smart that would take

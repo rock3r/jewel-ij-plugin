@@ -20,7 +20,6 @@ package com.android.tools.compose
 
 import android.annotation.SuppressLint
 import androidx.compose.compiler.plugins.kotlin.ComposeFqNames
-import com.android.tools.idea.projectsystem.getModuleSystem
 import com.intellij.psi.util.parentOfType
 import org.jetbrains.kotlin.descriptors.annotations.AnnotationDescriptor
 import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
@@ -57,7 +56,8 @@ class ComposableFunctionExtractableAnalyser : AdditionalExtractableAnalyser {
   }
 
   override fun amendDescriptor(descriptor: ExtractableCodeDescriptor): ExtractableCodeDescriptor {
-    if (descriptor.extractionData.commonParent.getModuleSystem()?.usesCompose != true) {
+    // -- Check changed to not depend on Android plugin
+    if (!isComposeEnabled(descriptor.extractionData.commonParent)) {
       return descriptor
     }
 
