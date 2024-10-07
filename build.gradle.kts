@@ -144,11 +144,14 @@ tasks {
 
   create<UpdateXmlTask>("updateLocalPluginRepository") {
     dependsOn(named("copyPluginZipToLocalRepository"))
-    val pluginFile = (named("copyPluginZipToLocalRepository").get() as Copy).outputs.files.singleFile
 
-    updateFile.set(file("plugin-repository/updatePlugins.xml"))
+    updateFile = file("plugin-repository/updatePlugins.xml")
+
+    val pluginZipFile = (named("buildPlugin").get() as BuildPluginTask).outputs.files.singleFile
     downloadUrl =
-      "https://raw.githubusercontent.com/rock3r/jewel-ij-plugin/refs/heads/main/plugin-repository/${pluginFile.name}"
+      "https://raw.githubusercontent.com/rock3r/jewel-ij-plugin/refs/heads/main/plugin-repository/${pluginZipFile.name}"
+    println("Update plugin url: ${downloadUrl.get()}. Plugin file name: ${pluginZipFile.name}")
+
     pluginName = "Jewel"
     pluginId = providers.gradleProperty("pluginGroup")
     version = providers.gradleProperty("pluginVersion")
