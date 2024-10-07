@@ -1,0 +1,25 @@
+
+<plugins>
+    <plugin id="org.jetbrains.plugins.template" url="https://raw.githubusercontent.com/rock3r/jewel-ij-plugin/refs/heads/main/plugin-repository/plugin-repository" version="1.0.1">
+        <change-notes>&lt;h3&gt;Changed&lt;/h3&gt;
+
+&lt;ul&gt;&lt;li&gt;Fix crashes that didn't come up during testing&lt;/li&gt;&lt;/ul&gt;
+
+
+</change-notes>
+        <description>&lt;p&gt;Experimental copy of Compose tooling from Android Studio's &lt;code&gt;compose-ide-plugin&lt;/code&gt; that works in IntelliJ IDEA, even
+without the Android plugin enabled.&lt;/p&gt;
+
+&lt;p&gt;This is &lt;strong&gt;experimental, untested, and probably broken&lt;/strong&gt;. You've been warned!&lt;/p&gt;
+
+&lt;p&gt;Adds support for building Compose for Desktop/Jewel UI on the JVM via
+the &lt;a href="https://developer.android.com/jetpack/compose"&gt;Jetpack Compose&lt;/a&gt; toolkit.&lt;/p&gt;
+
+&lt;p&gt;More info on &lt;a href="https://github.com/JetBrains/jewel"&gt;Jewel&lt;/a&gt; and &lt;a href="https://developer.android.com/studio"&gt;Android Studio&lt;/a&gt; can
+be found on the respective websites.&lt;/p&gt;
+
+&lt;p&gt;This plugin will only be active on non-Android modules, or when the IntelliJ Android plugin is disabled.&lt;/p&gt;</description>
+        <name>Jewel</name>
+        <idea-version since-build="242.21829.142" until-build="243.*"/>
+    </plugin>
+</plugins>

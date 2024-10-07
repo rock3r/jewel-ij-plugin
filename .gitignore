@@ -101,5 +101,5 @@ $RECYCLE.BIN/
 # Ignore IJP temp folder
 /.intellijPlatform
 
-# Ignore release patch generator output
-/this-release.txt
+# Avoid ignoring plugin zips in plugin-repository
+!/plugin-repository/*.zip
